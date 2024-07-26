@@ -42,7 +42,7 @@ function showRandomQuote() {
 showRandomQuote();
 
 // Add New Quote
-const addQuote = () => {
+const createAddQuoteForm = () => {
     if (newQuoteTextInput.value !== "" && newQuoteCategoryInput.value !== "") {
         const newQuoteText = newQuoteTextInput.value;
         const newQuoteCategory = newQuoteCategoryInput.value;
