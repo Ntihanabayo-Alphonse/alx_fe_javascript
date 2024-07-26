@@ -6,7 +6,7 @@ const newQuoteBtn = document.getElementById('newQuote');
 
 // Empty object
 const quoteObjects = [
-    { quote: "Life isn't about finding yourself. Life is about creating yourself.", category: "Life" },
+    { quote: "text", category: "text" },
     { quote: "We do not remember days, we remember moments.", category: "Life" },
     { quote: "Without music, life would be a mistake.", category: "Music" },
     { quote: "Music is very spiritual, it has the power to bring people together.", category: "Music" },
