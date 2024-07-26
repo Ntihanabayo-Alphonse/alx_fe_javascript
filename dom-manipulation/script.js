@@ -22,13 +22,13 @@ const quotePara = document.createElement("p");
 const categoryPara = document.createElement("p");
 
 // Show Random Quote
-function showRandomQuote() {
+function displayRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quoteObjects.length);
     const randomQuote = quoteObjects[randomIndex];
 
     // Add content
-    quotePara.textContent = randomQuote["quote"];
-    categoryPara.textContent = randomQuote["category"];
+    quotePara.innerHTML = randomQuote["quote"];
+    categoryPara.innerHTML = randomQuote["category"];
 
     // Style
     quotePara.style.fontStyle = "italic";
@@ -39,7 +39,7 @@ function showRandomQuote() {
     quoteDisplay.appendChild(categoryPara);
 }
 
-showRandomQuote();
+displayRandomQuote();
 
 // Add New Quote
 const addQuote = () => {
@@ -56,10 +56,12 @@ const addQuote = () => {
 
             // Show new quote when button is clicked
             newQuoteBtn.addEventListener('click', () => {
-                quotePara.textContent = newQuote.quote;
-                categoryPara.textContent = newQuote.category;
+                quotePara.innerHTML = newQuote.quote;
+                categoryPara.innerHTML = newQuote.category;
             });
         });
+        newQuoteTextInput.value = "";
+        newQuoteCategoryInput.value = "";
     } else {
         alert("Fill both quote and category fields!");
     }
