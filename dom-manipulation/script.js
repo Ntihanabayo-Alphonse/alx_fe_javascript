@@ -22,7 +22,7 @@ const quotePara = document.createElement("p");
 const categoryPara = document.createElement("p");
 
 // Show Random Quote
-function displayRandomQuote() {
+function showRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quoteObjects.length);
     const randomQuote = quoteObjects[randomIndex];
 
@@ -39,7 +39,7 @@ function displayRandomQuote() {
     quoteDisplay.appendChild(categoryPara);
 }
 
-displayRandomQuote();
+showRandomQuote();
 
 // Add New Quote
 const addQuote = () => {
