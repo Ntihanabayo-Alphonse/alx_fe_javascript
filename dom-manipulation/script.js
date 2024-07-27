@@ -11,6 +11,7 @@ const exportQuotesBtn = document.getElementById('exportQuotes');
 
 // Initial quotes object
 let quoteObjects = [
+    { quote: "text", category: "category" },
     { quote: "We do not remember days, we remember moments.", category: "Life" },
     { quote: "Without music, life would be a mistake.", category: "Music" },
     { quote: "Give light and people will find the way.", category: "Inspirational" },
