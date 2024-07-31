@@ -14,10 +14,20 @@
         <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
         <button onclick="createAddQuoteForm()">Add Quote</button>
         <button id="exportQuotes">Export Quotes</button>
-        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" /><br>
+
+        <select id="categoryFilter" onchange="filterQuotes(event)">
+            <option value="all">All Categories</option>
+            <option value="Life">Life</option>
+            <option value="Education">Education</option>
+            <option value="Music">Music</option>
+            <option value="Inspirational">Inspirational</option>
+            <!-- Dynamically populated categories -->
+          </select>
       </div>
     <div id="quoteDisplay"></div>
     <button id="newQuote">Show New Quote</button>
+    <button id="randomQuote">Category Random Quote</button>
 
     <script src="script.js"></script>
 </body>
