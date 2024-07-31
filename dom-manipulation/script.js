@@ -109,3 +109,39 @@ function importFromJsonFile(event) {
     };
     fileReader.readAsText(event.target.files[0]);
 }
+
+
+// Category selection
+const categoryFilter = document.getElementById("categoryFilter");
+
+const filterQuotes = (event) => {
+    // Store the selected value in the select category in a constant
+    const selected = event.target.value;
+
+    const categoryRandomQuote = document.getElementById('randomQuote');
+
+    function categoryRandomSelection(filterArray) {
+        categoryRandomQuote.addEventListener("click", () => {
+            const randomIndex = Math.floor(Math.random() * filterArray.length);
+            const randomQuote = filterArray[randomIndex];
+            displayQuote(randomQuote);
+        });
+    }
+
+    // Grab quotes from the local storage
+    const quotes = JSON.parse(localStorage.getItem("Quotes"));
+    const filteredQuotesArray = [];
+
+    if (selected === 'all') {
+        categoryRandomSelection(quotes);
+    } else {
+        quotes.filter(filteredQuotes => {
+            if (filteredQuotes.category === selected) {
+                displayQuote(filteredQuotes);
+                filteredQuotesArray.push(filteredQuotes);
+                console.log(filteredQuotesArray);
+                categoryRandomSelection(filteredQuotesArray);
+            }
+        });
+    }
+}
