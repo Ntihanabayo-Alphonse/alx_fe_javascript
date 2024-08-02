@@ -192,7 +192,7 @@ setInterval(syncQuotes, 60000); // Sync every 60 seconds
 // Conflict Resolution
 function resolveConflicts() {
     const notificationText = document.createElement('p');
-    notificationText.textContent = 'Data has been updated from the server.';
+    notificationText.textContent = 'Quotes synced with server!';
     notification.appendChild(notificationText);
     setTimeout(() => {
         notification.innerHTML = '';
