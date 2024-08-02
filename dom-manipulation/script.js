@@ -5,6 +5,8 @@ const quoteDisplay = document.getElementById('quoteDisplay');
 const newQuoteBtn = document.getElementById('newQuote');
 const exportQuotesBtn = document.getElementById('exportQuotes');
 const categoryFilter = document.getElementById('categoryFilter');
+const notification = document.getElementById('notification');
+
 
 // Initial quotes object
 let quoteObjects = [
@@ -147,6 +149,51 @@ function importFromJsonFile(event) {
     fileReader.readAsText(event.target.files[0]);
 }
 
+
+// Simulate Server Interaction
+async function fetchQuotesFromServer() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data = await response.json();
+        // Simulating server quotes
+        const serverQuotes = data.map(post => ({
+            quote: post.title,
+            category: "Server"
+        }));
+        return serverQuotes;
+    } catch (error) {
+        console.error("Error fetching quotes from server:", error);
+        return [];
+    }
+}
+
+// Data Syncing Logic
+async function syncQuotes() {
+    const serverQuotes = await fetchQuotesFromServer();
+    const localQuotes = JSON.parse(localStorage.getItem("Quotes")) || quoteObjects;
+
+    // Merge quotes
+    const mergedQuotes = [...localQuotes, ...serverQuotes];
+    quoteObjects = Array.from(new Set(mergedQuotes.map(JSON.stringify))).map(JSON.parse);
+    saveQuotes();
+    populateCategories();
+    rememberSelectedFilter();
+}
+
+// Periodic Data Fetching
+setInterval(syncQuotes, 60000); // Sync every 60 seconds
+
+// Conflict Resolution
+function resolveConflicts() {
+    const notificationText = document.createElement('p');
+    notificationText.textContent = 'Data has been updated from the server.';
+    notification.appendChild(notificationText);
+    setTimeout(() => {
+        notification.innerHTML = '';
+    }, 5000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     loadQuotes();
+    syncQuotes();
 });
