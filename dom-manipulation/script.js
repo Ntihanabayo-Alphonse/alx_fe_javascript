@@ -149,12 +149,18 @@ function importFromJsonFile(event) {
     fileReader.readAsText(event.target.files[0]);
 }
 
-
+const method = "POST";
 // Simulate Server Interaction
 async function fetchQuotesFromServer() {
     try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            headers: {
+                 "Content-type": "application/json"
+            }
+        });
         const data = await response.json();
+
+
         // Simulating server quotes
         const serverQuotes = data.map(post => ({
             quote: post.title,
